@@ -187,13 +187,17 @@ For example, excel('1,1,1\n4,4,4\n9,9,9') returns [3, 12, 27].
 
 const excel = (str) => {
   let newArray = str.split('\n');
-  let madeInt = newArray.map(element => {
-    element.split(',').parse;
-  });
-  madeInt.forEach(element => {
-    element.reduce((accumulator, currentValue) => accumulator = accumulator * currentValue, 1);
-  });
-};
+
+  let breakArray = newArray.map(element => element.split(','));
+
+  let add = function(element) {
+    return element.reduce((accumulator, currentValue) => accumulator + parseInt(currentValue), 0);
+  };
+
+  let answer = breakArray.map(element => add(element));
+  return answer;
+}
+
 
 /* ------------------------------------------------------------------------------------------------
 TESTS
